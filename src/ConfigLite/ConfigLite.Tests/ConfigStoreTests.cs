@@ -15,7 +15,7 @@ namespace ConfigLite.Tests
         {
             Environment.SetEnvironmentVariable(CONF_FILE_VAR, "config.ini");
 
-            ConfigStore store = new ConfigStore(ENV_PREFIX);
+            ConfigStore store = ConfigStore.CreateFromEnvVar(ENV_PREFIX);
 
             Assert.Equal("VALUE_01", store.Get<string>("CONFIG_WITH_NO_SECTION"));
 
@@ -25,7 +25,7 @@ namespace ConfigLite.Tests
         [Fact]
         public void ConfigStoreTestCreateFromEnvVarMissing()
         {
-            ConfigStore store = new ConfigStore(ENV_PREFIX);
+            ConfigStore store = ConfigStore.CreateFromEnvVar(ENV_PREFIX);
 
             Assert.Null(store.Get<string>("CONFIG_WITH_NO_SECTION"));
         }
@@ -33,7 +33,11 @@ namespace ConfigLite.Tests
         [Fact]
         public void ConfigStoreTestCreateFromConfigFile()
         {
-            ConfigStore store = new ConfigStore(ENV_PREFIX, "config.ini");
+            ConfigStore store = ConfigStore.CreateFromFile("config.ini", ENV_PREFIX);
+
+            Assert.Equal("VALUE_01", store.Get<string>("CONFIG_WITH_NO_SECTION"));
+
+            store = ConfigStore.CreateFromFile("config.ini");
 
             Assert.Equal("VALUE_01", store.Get<string>("CONFIG_WITH_NO_SECTION"));
         }
@@ -41,7 +45,11 @@ namespace ConfigLite.Tests
         [Fact]
         public void ConfigStoreTestCreateFromConfigFileMissing()
         {
-            ConfigStore store = new ConfigStore(ENV_PREFIX, "config.missing.ini");
+            ConfigStore store = ConfigStore.CreateFromFile("config.missing.ini", ENV_PREFIX);
+
+            Assert.Null(store.Get<string>("CONFIG_WITH_NO_SECTION"));
+
+            store = ConfigStore.CreateFromFile("config.missing.ini");
 
             Assert.Null(store.Get<string>("CONFIG_WITH_NO_SECTION"));
         }
@@ -51,7 +59,7 @@ namespace ConfigLite.Tests
         {
             Environment.SetEnvironmentVariable(CONF_FILE_VAR, "config.ini");
 
-            ConfigStore store = new ConfigStore(ENV_PREFIX, "config.missing.ini");
+            ConfigStore store = ConfigStore.CreateFromFile("config.missing.ini", ENV_PREFIX);
 
             Assert.Equal("VALUE_01", store.Get<string>("CONFIG_WITH_NO_SECTION"));
 
@@ -61,7 +69,7 @@ namespace ConfigLite.Tests
         [Fact]
         public void ConfigStoreTestGet()
         {
-            ConfigStore store = new ConfigStore(ENV_PREFIX, "config.ini");
+            ConfigStore store = ConfigStore.CreateFromFile("config.ini", ENV_PREFIX);
 
             Assert.Equal("VALUE_01", store.Get<string>("CONFIG_WITH_NO_SECTION"));
             Assert.Equal("VALUE_03", store.Get<string>("SECTION1", "CONFIG_INSIDE_SECTION1"));
@@ -74,7 +82,7 @@ namespace ConfigLite.Tests
         [Fact]
         public void ConfigStoreTestContains()
         {
-            ConfigStore store = new ConfigStore(ENV_PREFIX, "config.ini");
+            ConfigStore store = ConfigStore.CreateFromFile("config.ini", ENV_PREFIX);
 
             Assert.Equal(true, store.Contains("CONFIG_WITH_NO_SECTION"));
             Assert.Equal(true, store.Contains("SECTION1", "CONFIG_INSIDE_SECTION1"));

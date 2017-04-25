@@ -5,16 +5,26 @@ namespace ConfigLite
 {
     public class ConfigStore
     {
-        public ConfigStore(string envVarPrefix)
+        private ConfigStore(string envVarPrefix)
         {
             Item.EnvVarEnvVarPrefix = envVarPrefix;
             Item.ConfigFileReader = ConfigFileReader.CreateFromEnvVar(envVarPrefix);
         }
 
-        public ConfigStore(string envVarPrefix, string configFile)
+        private ConfigStore(string configFile, string envVarPrefix)
         {
             Item.EnvVarEnvVarPrefix = envVarPrefix;
             Item.ConfigFileReader = ConfigFileReader.CreateFromFile(envVarPrefix, configFile);
+        }
+
+        public static ConfigStore CreateFromFile(string configFile, string envVarPrefix = null)
+        {
+            return new ConfigStore(configFile, envVarPrefix);
+        }
+
+        public static ConfigStore CreateFromEnvVar(string envVarPrefix = null)
+        {
+            return new ConfigStore(envVarPrefix);
         }
 
         public T Get<T>(string section, string key)
