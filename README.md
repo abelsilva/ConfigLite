@@ -28,6 +28,14 @@ ConfigStore store = new ConfigStore("config.ini");
 
 > This sample creates a store from a the file `config.ini`. More info from [documentation](https://github.com/abelsilva/ConfigLite/wiki/Creating-a-ConfigStore).
 
+Sample `INI` file:
+
+```ini
+HOST=10.10.10.250
+PORT=5544
+LOG_FILE=app.log
+```
+
 ### Step 3: Get configurations
 
 ```csharp
