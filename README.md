@@ -1,4 +1,4 @@
-# ConfigLite
+# ConfigLite [![NuGet version](https://badge.fury.io/nu/ConfigLite.svg)](https://badge.fury.io/nu/ConfigLite)
 
 ConfigLite is a .NET Configuration Loader
 
