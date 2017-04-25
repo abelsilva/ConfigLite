@@ -26,7 +26,7 @@ ConfigStore store = new ConfigStore("config.ini");
 
 ```
 
-> This sample creates a store from a file called `config.ini`
+> This sample creates a store from a the file `config.ini`. More info from [documentation](https://github.com/abelsilva/ConfigLite/wiki/Creating-a-ConfigStore).
 
 ### Step 3: Get configurations
 
