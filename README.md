@@ -37,7 +37,7 @@ int port = store.Get<int>("PORT");
 
 ```
 
-> If a configuration doesn't exist, the result will be the default value for the corresponding type, _i.e._: `null` for `string`, `0` for `int`...
+> More information from [documentation](https://github.com/abelsilva/ConfigLite/wiki/Get-Configuration-Variables)
 
 ### Step 4: Check if configurations exist
 
