@@ -45,7 +45,7 @@ int port = store.Get<int>("PORT");
 
 ```
 
-> More information from [documentation](https://github.com/abelsilva/ConfigLite/wiki/Get-Configuration-Variables)
+> Configurations may be overridden by environment variables. More information from [documentation](https://github.com/abelsilva/ConfigLite/wiki/Get-Configuration-Variables)
 
 ### Step 4: Check if configurations exist
 
