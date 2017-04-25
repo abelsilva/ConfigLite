@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>abelsilva</Authors>
+    <PackageLicenseUrl>https://github.com/abelsilva/ConfigLite/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/abelsilva/ConfigLite</PackageProjectUrl>
+    <PackageTags>.NET config</PackageTags>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+</Project>
