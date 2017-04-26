@@ -15,7 +15,7 @@ namespace ConfigLite.Tests
         {
             Environment.SetEnvironmentVariable(CONF_FILE_VAR, "config.ini");
 
-            ConfigStore store = ConfigStore.CreateFromEnvVar(ENV_PREFIX);
+            ConfigStore store = ConfigStore.Create(ENV_PREFIX);
 
             Assert.Equal("VALUE_01", store.Get<string>("CONFIG_WITH_NO_SECTION"));
 
@@ -25,7 +25,7 @@ namespace ConfigLite.Tests
         [Fact]
         public void ConfigStoreTestCreateFromEnvVarMissing()
         {
-            ConfigStore store = ConfigStore.CreateFromEnvVar(ENV_PREFIX);
+            ConfigStore store = ConfigStore.Create(ENV_PREFIX);
 
             Assert.Null(store.Get<string>("CONFIG_WITH_NO_SECTION"));
         }

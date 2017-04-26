@@ -21,6 +21,15 @@ namespace ConfigLite
         }
 
         /// <summary>
+        ///     Create a Configuration Store
+        /// </summary>
+        /// <param name="envVarPrefix">environment variables configurations prefix</param>
+        public static ConfigStore Create(string envVarPrefix = null)
+        {
+            return new ConfigStore(envVarPrefix);
+        }
+
+        /// <summary>
         ///     Create a Configuration Store referencing a configuration file
         /// </summary>
         /// <param name="configFile">configuration file path</param>
@@ -29,15 +38,6 @@ namespace ConfigLite
         public static ConfigStore CreateFromFile(string configFile, string envVarPrefix = null)
         {
             return new ConfigStore(configFile, envVarPrefix);
-        }
-
-        /// <summary>
-        ///     Create a Configuration Store
-        /// </summary>
-        /// <param name="envVarPrefix">environment variables configurations prefix</param>
-        public static ConfigStore CreateFromEnvVar(string envVarPrefix = null)
-        {
-            return new ConfigStore(envVarPrefix);
         }
 
         /// <summary>
