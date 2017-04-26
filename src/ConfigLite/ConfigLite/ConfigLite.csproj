@@ -7,7 +7,20 @@
     <PackageLicenseUrl>https://github.com/abelsilva/ConfigLite/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/abelsilva/ConfigLite</PackageProjectUrl>
     <PackageTags>.NET config</PackageTags>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
+    <PackageReleaseNotes>added documentation to public classes/methods</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+    <DocumentationFile>bin\Release\netstandard1.4\ConfigLite.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <TreatSpecificWarningsAsErrors />
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
 </Project>

@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace ConfigLite.File
 {
-    public class ConfigFileReader
+    internal class ConfigFileReader
     {
         public const string CONFIG_FILE_ENV_VAR = "CONFIG_FILE";
 
