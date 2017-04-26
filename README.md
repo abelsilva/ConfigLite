@@ -22,7 +22,7 @@ Install-Package ConfigLite
 
 ```csharp
 
-ConfigStore store = new ConfigStore("config.ini");
+ConfigStore store = ConfigStore.CreateFromFile("config.ini");
 
 ```
 
