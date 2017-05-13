@@ -7,8 +7,8 @@
     <PackageLicenseUrl>https://github.com/abelsilva/ConfigLite/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/abelsilva/ConfigLite</PackageProjectUrl>
     <PackageTags>.NET config</PackageTags>
-    <Version>0.1.3</Version>
-    <PackageReleaseNotes>renamed ConfigStore builder</PackageReleaseNotes>
+    <Version>0.1.4</Version>
+    <PackageReleaseNotes>fixed an issue when overriding a configuration from an env var</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

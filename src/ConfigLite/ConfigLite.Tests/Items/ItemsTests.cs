@@ -22,7 +22,7 @@ namespace ConfigLite.Tests.Items
         {
             //nothing
         }
-        
+
         [Fact]
         public void ItemsTestGetValue()
         {
@@ -36,7 +36,7 @@ namespace ConfigLite.Tests.Items
 
             Assert.Equal("VALUE_03", Item.GetValue<string>("SECTION1", "CONFIG_INSIDE_SECTION1"));
             Assert.Equal("VALUE_04", Item.GetValue<string>("SECTION1", "CONFIG_WITH_INLINE_COMMENT"));
-            
+
             Assert.Equal(';', Item.GetValue<char>("SECTION2.SECTION3", "CONFIG_WITH_COMMENT_CHAR_BETWEEN_DOUBLE_QUOTES"));
             Assert.Equal('#', Item.GetValue<char>("SECTION2.SECTION3", "CONFIG_WITH_COMMENT_CHAR_BETWEEN_SINGLE_QUOTES"));
 
@@ -46,6 +46,31 @@ namespace ConfigLite.Tests.Items
             Assert.Equal(123.456m, Item.GetValue<decimal>("SECTION2.SECTION3", "CONFIG_DECIMAL"));
 
             Assert.Equal(789, Item.GetValue<int>("SECTION2.SECTION3", "CONFIG_INT"));
+        }
+
+        [Fact]
+        public void ItemsTestGetValueOverridenByEnvVar()
+        {
+            Assert.Equal("VALUE_01", Item.GetValue<string>(null, "CONFIG_WITH_NO_SECTION"));
+            Assert.Equal("VALUE_03", Item.GetValue<string>("SECTION1", "CONFIG_INSIDE_SECTION1"));
+            Assert.Equal(789, Item.GetValue<int>("SECTION2.SECTION3", "CONFIG_INT"));
+
+            try
+            {
+                Environment.SetEnvironmentVariable(Item.EnvVarEnvVarPrefix + "_CONFIG_WITH_NO_SECTION", "ENV_VALUE_01");
+                Environment.SetEnvironmentVariable(Item.EnvVarEnvVarPrefix + "_SECTION1_" + "CONFIG_INSIDE_SECTION1", "ENV_VALUE_03");
+                Environment.SetEnvironmentVariable(Item.EnvVarEnvVarPrefix + "_SECTION2.SECTION3_" + "CONFIG_INT", "799");
+
+                Assert.Equal("ENV_VALUE_01", Item.GetValue<string>(null, "CONFIG_WITH_NO_SECTION"));
+                Assert.Equal("ENV_VALUE_03", Item.GetValue<string>("SECTION1", "CONFIG_INSIDE_SECTION1"));
+                Assert.Equal(799, Item.GetValue<int>("SECTION2.SECTION3", "CONFIG_INT"));
+            }
+            finally
+            {
+                Environment.SetEnvironmentVariable(Item.EnvVarEnvVarPrefix + "_CONFIG_WITH_NO_SECTION", null);
+                Environment.SetEnvironmentVariable(Item.EnvVarEnvVarPrefix + "_SECTION1_" + "CONFIG_INSIDE_SECTION1", null);
+                Environment.SetEnvironmentVariable(Item.EnvVarEnvVarPrefix + "_SECTION2.SECTION3_" + "CONFIG_INT", null);
+            }
         }
 
         [Fact]
